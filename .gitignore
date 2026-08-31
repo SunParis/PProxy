@@ -1,0 +1,11 @@
+# Local routing configuration
+/DIRECT_LIST
+
+# Built commands and Go test artifacts
+/PProxy
+/pproxy
+/vpnvpn
+*.exe
+*.test
+*.out
+/coverage.*
