@@ -78,3 +78,26 @@ The listener also accepts URL form, for example `-listen http://127.0.0.1:7895`.
 ```
 
 The default listener is restricted to localhost. Binding to a non-loopback address exposes a forward proxy to other machines and should only be done with appropriate network access controls.
+
+## Start automatically with systemd
+
+Build the binary, link the included user service, and enable it:
+
+```sh
+go build -buildvcs=false -trimpath -o pproxy .
+systemctl --user link "$PWD/pproxy.service"
+systemctl --user enable --now pproxy.service
+```
+
+To start the user service during system startup instead of waiting for login, enable lingering once:
+
+```sh
+sudo loginctl enable-linger "$USER"
+```
+
+Inspect the service with:
+
+```sh
+systemctl --user status pproxy.service
+journalctl --user -u pproxy.service -f
+```
