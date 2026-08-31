@@ -1,5 +1,6 @@
 # Local routing configuration
 /DIRECT_LIST
+/pproxy.service
 
 # Built commands and Go test artifacts
 /PProxy
